@@ -1,3 +1,4 @@
+<<<<<<< HEAD
  " Python PEP8 standard
  set tabstop=4
  set softtabstop=4
@@ -142,3 +143,123 @@
  hi Tb_VisibleNormal ctermbg=252 ctermfg=235
  hi Tb_VisibleChanged guifg=green ctermbg=252 ctermfg=white
 
+=======
+set nocompatible              " required
+filetype off                  " required
+
+set splitbelow
+set splitright
+set nu
+" make your code look pretty
+let python_highlight_all=1
+syntax on
+
+" set to change splits
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+
+
+"open a NERDTree automatically when vim starts up
+autocmd vimenter * NERDTree
+
+" add  the proper PEP8 indentation
+au BufNewFile,BufRead *.py
+	\set tabstop=4
+	\set softtabstop=4
+	\set shiftwidth=4
+	\set textwidth=79
+	\set expandtab
+	\set autoindent
+	\set fileformat=unix
+
+" full stack development
+au BufNewFile,BufRead *.js, *.html, *.css
+	\set tabstop=2
+	\set softtabstop=2
+	\set shiftwidth=2
+
+" Flagging unnecessary whitespace
+" au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
+
+" utf-8 support
+set encoding=utf-8
+
+" ycm setting
+let g:ycm_global_ycm_extra_conf='~/.ycm_extra_conf.py'
+let g:ycm_collect_identifiers_from_tag_files = 1
+let g:ycm_seed_identifiers_with_syntax = 1
+let g:ycm_confirm_extra_conf=0
+let g:ycm_key_invoke_completion = '<C-/>'
+let g:ycm_autoclose_preview_window_after_completion=1
+map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
+nnoremap <F5> :YcmForceCompileAndDiagnostics<CR>
+
+" python with virtualenv support
+"py << EOF
+"import os
+"import sys
+"if 'VIRTUAL_ENV' in os.environ:
+"	project_base_dir = os.environ['VIRTUAL_ENV']
+"	activate_this = os.path.join(project_base_dir, '/bin/activate_this.py')
+"	execfile(activate_this, dict(__file__=activate_this))
+"EOF
+
+
+" hide .pyc files
+let NERDTreeIgnore=['\.pyc$','\~$']
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
+
+" let Vundle manage Vundle, required
+Plugin 'gmarik/Vundle.vim'
+
+" Add all your plugins here (note older versions of Vundle used Bundle instead of Plugin)
+
+" add SimpylFold
+" Plugin 'tmhedberg/SimpylFold'
+
+" Autoindent will help but in some cases, it doesn't always do what you want
+" especially when it comes to conforming to PEP8 standar, to fix this ,use 
+" the indentpython.vim extension
+Plugin 'vim-scripts/indentpython.vim'
+
+" YouCompleteMe
+Bundle 'Valloric/YouCompleteMe'
+
+" Conque is a Vim plugin which allows you to run interactive program
+Bundle 'jewes/Conque-Shell'
+
+
+" hava VIM check your syntax on each save with the syntastic extension
+" Plugin 'scrooloose/syntasitc'
+
+" add PEP8 checking with this nifty little plugin:
+Plugin 'nvie/vim-flake8'
+
+" color schemes
+ Plugin 'jnurmine/Zenburn'
+ Plugin 'altercation/vim-colors-solarized'
+
+"  colorscheme solarized
+
+" file browsing
+Plugin 'scrooloose/nerdtree'
+
+" use tabs
+Plugin 'jistr/vim-nerdtree-tabs'
+
+" git integration
+Plugin 'tpope/vim-fugitive'
+
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+>>>>>>> 64bd584efb3e150259036eb8b3001291664e7ed3
